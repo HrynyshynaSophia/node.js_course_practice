@@ -9,9 +9,21 @@ const options = {
             description: 'Documentation for your API',
         },
     },
-    apis: ['src/*.js'], 
-};
+    apis: ['src/*.js'],
+    paths: {
+        '/health-check': {
+            get: {
+                summary: 'Check if the server is running',
+                responses: {
+                    '200': {
+                        description: 'Server is running',
+                    },
+                },
+            },
+        },
+    },
+}
 
-const specs = swaggerJsdoc(options);
+    const specs = swaggerJsdoc(options);
 
-module.exports = { specs, swaggerUi };
+    module.exports = { specs, swaggerUi };
