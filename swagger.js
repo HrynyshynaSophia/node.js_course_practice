@@ -21,7 +21,48 @@ const options = {
                 },
             },
         },
+        '/api/users': {
+            get: {
+                summary: 'Get list of users',
+                responses: {
+                    '200': {
+                        description: 'Successful response',
+                    },
+                    '500': {
+                        description: 'Internal server error'
+                    }
+                },
+            },
+            post: {
+                summary: 'Add a new user',
+                responses: {
+                    '201': {
+                        description: 'Successful operation',
+                    },
+                    '400': {
+                        description: 'Bad request'
+                    },
+                    '500': {
+                        description: 'Internal server error'
+                    }
+                },
+            },
+        },
     },
+    responses: {
+        '200': {
+        description: 'Successful responce'
+        },
+        '400': {
+            description: 'Bad request'
+        },
+        '404': {
+            description: 'Not found'
+        },
+        '500': {
+            description: 'Internal server error'
+        },
+    }
 }
 
     const specs = swaggerJsdoc(options);
