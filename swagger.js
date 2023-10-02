@@ -9,7 +9,7 @@ const options = {
             description: 'Documentation for your API',
         },
     },
-    apis: ['./src/*.js'],
+    apis: ['src/*.js'],
     paths: {
         '/health-check': {
             get: {
