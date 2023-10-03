@@ -8,7 +8,7 @@ const PORT = 3000;
  */
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.get('/', (req, res) => {
-  res.send('Welcome to the root path!');
+    res.send('Welcome to the root path!');
 });
 /**
  * @swagger
