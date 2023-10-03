@@ -1,13 +1,14 @@
+import { Request, Response } from 'express';
 const express = require('express');
 const { specs, swaggerUi } = require('../swagger');
 const app = express();
-const PORT = 3000;
+const PORT: number = 3000;
 /**
  * @swagger
  * /api-docs
  */
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => { 
     res.send('Welcome to the root path!');
 });
 /**
@@ -19,7 +20,7 @@ app.get('/', (req, res) => {
  *       200:
  *         description: Server is running
  */
-app.get('/health-check', (req, res) => {
+app.get('/health-check', (req: Request,res: Response) => {
     res.json({ status: 'Server is running!' });
 });
 /**
@@ -31,7 +32,7 @@ app.get('/health-check', (req, res) => {
  *       200:
  *         description: List of users
  */
-app.get('/api/users',(req,res)=>{
+app.get('/api/users',(req: Request,res: Response)=>{
     res.json({message: 'List of users'})
 })
 /**
@@ -43,13 +44,13 @@ app.get('/api/users',(req,res)=>{
  *       200:
  *         description: User created
  */
-app.set('/api/users',(req,res)=>{
+app.set('/api/users',(req: Request,res: Response)=>{
     res.json({message: 'User created'})
 })
-app.use((req,res,next)=>{
+app.use((req: Request,res: Response)=>{
     res.status(404).json({error: 'Not found'});
 });
-app.use((req,res,next)=>{
+app.use((req: Request,res: Response)=>{
     res.status(500).json({error: 'Internal server error'});
 })
 app.listen(PORT, () => {

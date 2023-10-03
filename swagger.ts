@@ -1,7 +1,8 @@
+import { Options } from 'swagger-jsdoc'
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
-const options = {
+const options: Options = {
     swaggerDefinition: {
         info: {
             title: 'Your API Documentation',
@@ -9,7 +10,7 @@ const options = {
             description: 'Documentation for your API',
         },
     },
-    apis: ['./src/*.js'],
+    apis: ['./src/*.ts'],
 }
 
     const specs = swaggerJsdoc(options);
