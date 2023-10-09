@@ -1,14 +1,15 @@
-import { Request, Response } from 'express';
-const express = require('express');
-const { specs, swaggerUi } = require('../swagger');
+import express, { Request, Response } from 'express';
+import { serve } from 'swagger-ui-express'
+import swagger from './swagger';
+
 const app = express();
 const PORT: number = 3000;
 /**
  * @swagger
  * /api-docs
  */
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
-app.get('/', (req: Request, res: Response) => { 
+app.use('/api-docs', serve, swagger());
+app.get('/', (req: Request, res: Response) => {
     res.send('Welcome to the root path!');
 });
 /**
@@ -20,7 +21,7 @@ app.get('/', (req: Request, res: Response) => {
  *       200:
  *         description: Server is running
  */
-app.get('/health-check', (req: Request,res: Response) => {
+app.get('/health-check', (req: Request, res: Response) => {
     res.json({ status: 'Server is running!' });
 });
 /**
@@ -32,8 +33,8 @@ app.get('/health-check', (req: Request,res: Response) => {
  *       200:
  *         description: List of users
  */
-app.get('/api/users',(req: Request,res: Response)=>{
-    res.json({message: 'List of users'})
+app.get('/api/users', (req: Request, res: Response) => {
+    res.json({ message: 'List of users' })
 })
 /**
  * @swagger
@@ -44,14 +45,14 @@ app.get('/api/users',(req: Request,res: Response)=>{
  *       200:
  *         description: User created
  */
-app.set('/api/users',(req: Request,res: Response)=>{
-    res.json({message: 'User created'})
+app.post('/api/users', (req: Request, res: Response) => {
+    res.json({ message: 'User created' })
 })
-app.use((req: Request,res: Response)=>{
-    res.status(404).json({error: 'Not found'});
+app.use((req: Request, res: Response) => {
+    res.status(404).json({ error: 'Not found' });
 });
-app.use((req: Request,res: Response)=>{
-    res.status(500).json({error: 'Internal server error'});
+app.use((req: Request, res: Response) => {
+    res.status(500).json({ error: 'Internal server error' });
 })
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
