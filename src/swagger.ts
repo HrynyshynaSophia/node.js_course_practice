@@ -5,6 +5,7 @@ import { setup } from 'swagger-ui-express'
 export default () => {
     const options: Options = {
         swaggerDefinition: {
+            openapi: '3.0.0',
             info: {
                 title: 'Your API Documentation',
                 version: '1.0.0',
@@ -42,6 +43,19 @@ export default () => {
                             releaseDate: '1999-03-31',
                             genre: ["Sci-Fi", "Action"],
                         },
+                    },
+                    Genre: {
+                        type: 'Array',
+                        required: ['name'],
+                        properties: {
+                            name: {
+                                type: 'string',
+                                description: 'Genre name',
+                            },
+                        },
+                        example: {
+                            name: 'Drama'
+                        }
                     },
                 },
             },
