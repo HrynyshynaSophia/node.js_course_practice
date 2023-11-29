@@ -7,10 +7,11 @@ import swagger from "./swagger";
 import routes from "./routes";
 import mongoose from "mongoose";
 import bodyParser from 'body-parser'
+import 'dotenv/config'
 const app = express();
 const PORT: number = 3000;
 
-const uri = "mongodb+srv://hrunushunasophia13:K2kWiIHQwrAvRzkO@cluster0.cev8jny.mongodb.net/?retryWrites=true&w=majority";
+const uri = process.env.URI;
 
 mongoose.connect(uri);
 app.use(bodyParser.json());

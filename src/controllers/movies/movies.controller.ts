@@ -1,14 +1,24 @@
 import { type Request, type Response } from 'express'
 import Movie from '../../models/movie';
 import mongoose from 'mongoose';
+import Genres from '../../models/genres';
 const ObjectId = mongoose.Types.ObjectId;
 
 //Movie creation controller
 const postMoviesResponse = async (req: Request, res: Response): Promise<void> => {
+    const newMovie = req.body;
+    const genres = await Genres.find({});
+    const isGenresExist = (newMovie.genre).every((genre: string) => {
+        return genres.some((dbGenre: any)=> dbGenre.name===genre)
+    })
     try {
-        const newMovie = req.body;
+        console.log(newMovie)
         if (Object.keys(newMovie).length === 0) {
             res.status(400).json({ error: 'Request body is missing' });
+            return;
+        }
+        if(!isGenresExist){
+            res.status(400).json({ error: 'You try to add movie with genres that doesn\'t exists in genres list' });
             return;
         }
         const movie = await Movie.create(req.body);
