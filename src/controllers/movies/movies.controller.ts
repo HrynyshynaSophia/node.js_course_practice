@@ -12,7 +12,6 @@ const postMoviesResponse = async (req: Request, res: Response): Promise<void> =>
         return genres.some((dbGenre: any)=> dbGenre.name===genre)
     })
     try {
-        console.log(newMovie)
         if (Object.keys(newMovie).length === 0) {
             res.status(400).json({ error: 'Request body is missing' });
             return;
