@@ -23,7 +23,7 @@ const postMoviesResponse = async (req: Request, res: Response): Promise<void> =>
         const movie = await Movie.create(req.body);
         res.status(201).json(movie);
     } catch (err: any) {
-        res.status(400).json({ error: err.message });
+        res.status(500).json({ error: err.message });
     }
 }
 
@@ -50,7 +50,7 @@ const putMoviesResponse = async (req: Request, res: Response): Promise<void> => 
             res.status(400).json({ error: 'Movie ID is missing' });
             return;
         }
-        if (!updatedMovieData) {
+        if (!updatedMovieData || Object.keys(updatedMovieData).length == 0) {
             res.status(400).json({ error: 'Request body is missing' });
             return;
         }

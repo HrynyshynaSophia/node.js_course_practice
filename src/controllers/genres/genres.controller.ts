@@ -6,13 +6,16 @@ const ObjectId = mongoose.Types.ObjectId;
 //Create genre controller
 const postGenreResponse = async (req: Request, res: Response): Promise<void> => {
     try {
-        const newGenre = req.body;
-        if (Object.keys(newGenre).length === 0) {
-            res.status(400).json({ error: 'Request body is missing' });
-            return;
-        }
-        const genre = await Genres.create(req.body);
-        res.json(genre)
+        const { name } = req.body;
+        const existingGenre = await Genres.findOne({ name });
+
+        if (existingGenre) {
+            res.status(400).json({ error: 'This genre is already exist' });
+            return
+        }else{
+            const newGenre = await Genres.create({ name });
+            res.status(200).json(newGenre);
+        } 
     } catch (err: any) {
         res.status(500).json({ error: err.message })
     }

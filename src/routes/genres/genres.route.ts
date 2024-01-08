@@ -143,6 +143,8 @@
  *           type: string
  *         description: The ID of the genre to delete.
  *     responses:
+ *       200:
+ *         description: Deleted succesfully.
  *       404:
  *         description: Bad Request
  *         content:

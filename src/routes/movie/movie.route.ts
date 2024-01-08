@@ -194,6 +194,7 @@
 import express from "express";
 import { postMoviesResponse, getMoviesResponse, putMoviesResponse, deleteMoviesResponse, findByGenreMoviesResponse } from "../../controllers/movies/movies.controller";
 import { createMovieValidation, updateMovieValidation, validate } from "../../shared/validators/movie.validator";
+
 const router = express.Router();
 
 //Create a new movie

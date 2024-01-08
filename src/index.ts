@@ -1,14 +1,11 @@
 import express, { Request, Response } from "express";
-const { MongoClient } = require("mongodb");
-
 import swaggerUi from "swagger-ui-express";
-import swaggerJSDoc from "swagger-jsdoc";
 import swagger from "./swagger";
 import routes from "./routes";
 import mongoose from "mongoose";
 import bodyParser from 'body-parser'
 import 'dotenv/config'
-const app = express();
+export const app = express();
 const PORT: number = 3000;
 
 const uri = process.env.URI;
@@ -32,3 +29,4 @@ app.use((req: Request, res: Response) => {
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
+
