@@ -1,11 +1,10 @@
 import request from 'supertest';
 import 'dotenv/config'
 import Genres from '../models/genres';
-import express from 'express';
 import genreRoute from "../routes/genres/genres.route";
 import bodyParser from 'body-parser'
+import { app } from '..';
 
-const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api/genres', genreRoute)

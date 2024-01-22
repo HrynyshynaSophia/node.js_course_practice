@@ -3,10 +3,8 @@ import 'dotenv/config'
 import Movie from '../models/movie';
 import bodyParser from 'body-parser';
 import movieRoute from "../routes/movie/movie.route";
-import express from 'express';
 import Genres from '../models/genres';
-
-const app = express();
+import { app } from '..';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
